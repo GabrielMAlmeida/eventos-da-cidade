@@ -1,0 +1,33 @@
+body {
+  background-color: #f5f7fa;
+}
+
+.navbar {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card-footer {
+  border: none;
+}
+
+.btn {
+  border-radius: 12px;
+}
+
+footer {
+  margin-top: 80px;
+}

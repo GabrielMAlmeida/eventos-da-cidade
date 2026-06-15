@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos da Cidade</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/"> 🎭 Eventos da Cidade </a>
+
+        <div>
+          <a href="/comentarios" class="btn btn-outline-light me-2">
+            Comentários
+          </a>
+
+          <a href="/feedback" class="btn btn-warning me-2"> Avaliar </a>
+
+          <a href="/adicionar" class="btn btn-success"> + Novo Evento </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <!-- Título -->
+      <div class="text-center mb-4">
+        <h1 class="fw-bold">Portal Cultural da Cidade</h1>
+
+        <p class="text-muted">
+          Descubra shows, teatros, exposições e eventos culturais próximos de
+          você.
+        </p>
+      </div>
+
+      <!-- Pesquisa -->
+      <form method="GET" class="mb-5">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+              class="form-control form-control-lg"
+              type="text"
+              name="busca"
+              placeholder="Pesquisar evento ou categoria"
+            />
+          </div>
+
+          <div class="col-md-2">
+            <button class="btn btn-primary btn-lg w-100">Pesquisar</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Eventos -->
+      <div class="row">
+        {% for evento in eventos %}
+
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <img src="/uploads/{{evento[7]}}" class="card-img-top" />
+              <h4 class="card-title">{{evento[1]}}</h4>
+
+              <hr />
+
+              <p>
+                <strong>Categoria:</strong>
+
+                {{evento[2]}}
+              </p>
+
+              <p>📅 {{evento[3]}}</p>
+
+              <p>📍 {{evento[5]}}</p>
+            </div>
+
+            <div class="card-footer bg-white">
+              <a href="/evento/{{evento[0]}}" class="btn btn-primary">
+                Ver detalhes
+              </a>
+
+              <a
+                href="/excluir/{{evento[0]}}"
+                class="btn btn-danger"
+                onclick="
+                  return confirm('Deseja realmente excluir este evento?')
+                "
+              >
+                Excluir
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white text-center p-4 mt-5">
+      <h5>Eventos da Cidade</h5>
+
+      <p>
+        Sistema desenvolvido em Python + Flask para a disciplina de Programação
+        Web
+      </p>
+    </footer>
+  </body>
+</html>
